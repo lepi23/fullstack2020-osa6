@@ -1,17 +1,16 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { voteAnecdote } from './reducers/anecdoteReducer'
 import AnecdoteForm from './components/AnecdoteForm'
 import AnecdoteList from './components/AnecdoteList'
+import Notification from './components/Notification'
+
 
 const App = () => {
-  const anecdotes = useSelector(state => state)
-
-  anecdotes.sort((a, b) => (a.votes < b.votes) ? 1 : -1)
   return (
     <div>
+      <Notification/>
       <h2>Anecdotes</h2>
-      <AnecdoteList anecdotes = {anecdotes}/>
+      <AnecdoteList />
       <h2>create new</h2>
       <AnecdoteForm />
     </div>

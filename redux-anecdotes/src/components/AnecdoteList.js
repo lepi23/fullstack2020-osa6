@@ -1,15 +1,16 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { voteAnecdote } from '../reducers/anecdoteReducer'
-const AnecdoteList = ({anecdotes}) =>
-
+const AnecdoteList = () =>
 {
-    anecdotes.sort((a, b) => (a.votes < b.votes) ? 1 : -1)
     const dispatch = useDispatch()
+    const anecdotes = useSelector(state => state)
+    anecdotes.sort((a, b) => (a.votes <= b.votes) ? 1 : -1)
+
     const vote = (id) => {
       dispatch(voteAnecdote(id))
-      console.log('vote', id)
     }
+
     return(
     anecdotes.map(anecdote =>
         <div key={anecdote.id}>
