@@ -22,9 +22,10 @@ export const setNotification = (message, time) => {
       type: 'NOTIFY',
       message
     })
-    setTimeout(() => {
+  
+    window.setTimeout(() => {
       dispatch(resetNotification())
-}, 5000)
+}, time*1000)
   }
 }
 export default notificationReducer
