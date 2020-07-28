@@ -1,18 +1,30 @@
-import store  from '../store'
 
-const notificationReducer = (state, action = 'NOTHING') => {
-    console.log(action)
+const notificationReducer = (state = null, action) => {
+  
     switch (action.type) {
-      case 'VOTE':
-        return action
+      case 'NOTIFY':
+        return action.message
+      case 'NOTIFYRESET':
+        return null        
       default:
-        return action
+        return state
     }
 }
-export const voteNotification = action => {
-    return {
-      type: 'VOTE',
-      action,
-    }
+export const resetNotification = () => {
+  return {
+    type: 'NOTIFYRESET',
+  }
+}
+
+export const setNotification = (message, time) => {
+  return async dispatch => {
+    dispatch({
+      type: 'NOTIFY',
+      message
+    })
+    setTimeout(() => {
+      dispatch(resetNotification())
+}, 5000)
+  }
 }
 export default notificationReducer
